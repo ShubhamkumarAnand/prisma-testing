@@ -4,29 +4,20 @@ const prisma = new PrismaClient();
 async function main() {
   // Prisma client queries
 
-  // Creating a user in db
-
-  // const user = await prisma.user.create({
+  // Creating a task in db
+  // const task = await prisma.task.create({
   //   data: {
-  //     name: "bimal",
-  //     email: "email@abc.com",
-  //     post:{
-  //       create:{
-  //         title: "Hello world",
-  //         content: "First step into the programming",
-  //         published: true
-  //       }
-  //     }
+  //     dueDate: new Date(),
+  //     title: "Finish the Assignment",
+  //     description: "Assignment must be finished",
+  //     priority: "high",
+  //     status: "inprogress",
   //   },
   // });
 
-  // Retrieving the users data
-  const users = await prisma.user.findMany({
-    include: {
-      post: true,
-    },
-  });
-  console.dir(users, { depth: null });
+  // Retrieving the tasks data
+  const tasks = await prisma.task.findMany({});
+  console.dir(tasks, { depth: null });
 }
 
 main()

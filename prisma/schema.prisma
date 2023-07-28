@@ -10,18 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  name  String  @unique
-  email String?
-  post  Post[]
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  dueDate     DateTime
+  priority    PRIORITY
+  status      STATUS   @default(todo)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+enum PRIORITY {
+  low
+  medium
+  high
+}
+
+enum STATUS {
+  todo
+  inprogress
+  completed
 }
